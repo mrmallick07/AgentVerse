@@ -1,7 +1,6 @@
-google-adk[fastapi]>=0.0.1
-google-auth-oauthlib
-google-auth-httplib2
+google-adk[fastapi]>=1.0.0
 google-api-python-client
+google-cloud-firestore
 fastapi
 uvicorn
 python-dotenv

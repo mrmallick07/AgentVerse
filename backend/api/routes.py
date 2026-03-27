@@ -12,7 +12,7 @@ from google.adk.sessions import InMemorySessionService
 from google.genai import types
 
 from backend.agents.orchestrator import orchestrator_agent
-
+from backend.database import create_task, get_tasks, save_session_message, get_session_history
 router = APIRouter()
 
 # Session management
@@ -142,3 +142,28 @@ async def chat(request: ChatRequest):
 async def health():
     """Health check endpoint."""
     return {"status": "ok", "app": "AgentVerse", "agents": 5}
+class TaskRequest(BaseModel):
+    session_id: str
+    title: str
+    description: str = ""
+
+
+@router.post("/api/tasks")
+async def add_task(request: TaskRequest):
+    """Create a new task in Firestore."""
+    task = create_task(request.session_id, request.title, request.description)
+    return task
+
+
+@router.get("/api/tasks/{session_id}")
+async def list_tasks(session_id: str):
+    """Get all tasks for a session."""
+    tasks = get_tasks(session_id)
+    return {"tasks": tasks}
+
+
+@router.get("/api/history/{session_id}")
+async def chat_history(session_id: str):
+    """Get chat history for a session."""
+    history = get_session_history(session_id)
+    return {"history": history}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentVerse — Multi-Agent Research & Action Platform</title>
+    <meta name="description" content="A multi-agent AI system that helps you research, analyze, plan, and create across any domain.">
+    <link rel="icon" type="image/png" href="/static/av_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <img src="/static/av_logo.png" alt="AgentVerse" class="logo-img">
+                <div class="logo-text">
+                    <h1>AgentVerse</h1>
+                    <span class="tagline">Multi-Agent Research & Action Platform</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="header-stats">
+                <div class="stat-chip">
+                    <span class="stat-icon">🤖</span>
+                    <span>5 Agents</span>
+                </div>
+                <div class="stat-chip">
+                    <span class="stat-icon">🔗</span>
+                    <span>6 APIs</span>
+                </div>
+            </div>
+            <div class="status-badge online">
+                <span class="status-dot"></span>
+                <span>System Online</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <main class="main-layout">
+        <!-- Left Panel — Agent Activity -->
+        <aside class="panel agent-panel">
+            <div class="panel-header">
+                <h2>🤖 Agent Activity</h2>
+                <span class="badge" id="active-agent-count">0 active</span>
+            </div>
+
+            <!-- Agent Cards -->
+            <div class="agent-cards">
+                <div class="agent-card" id="agent-orchestrator" data-agent="OrchestratorAgent">
+                    <div class="agent-avatar orchestrator-avatar">🧠</div>
+                    <div class="agent-info">
+                        <h3>Orchestrator</h3>
+                        <p class="agent-role">Routes & Coordinates</p>
+                        <p class="agent-status">Idle</p>
+                    </div>
+                    <div class="agent-indicator"></div>
+                </div>
+
+                <div class="agent-card" id="agent-research" data-agent="ResearchAgent">
+                    <div class="agent-avatar research-avatar">🔍</div>
+                    <div class="agent-info">
+                        <h3>Researcher</h3>
+                        <p class="agent-role">Search · Wiki · YouTube</p>
+                        <p class="agent-status">Idle</p>
+                    </div>
+                    <div class="agent-indicator"></div>
+                </div>
+
+                <div class="agent-card" id="agent-analyst" data-agent="AnalystAgent">
+                    <div class="agent-avatar analyst-avatar">📊</div>
+                    <div class="agent-info">
+                        <h3>Analyst</h3>
+                        <p class="agent-role">Synthesize · Compare</p>
+                        <p class="agent-status">Idle</p>
+                    </div>
+                    <div class="agent-indicator"></div>
+                </div>
+
+                <div class="agent-card" id="agent-planner" data-agent="PlannerAgent">
+                    <div class="agent-avatar planner-avatar">🗺️</div>
+                    <div class="agent-info">
+                        <h3>Planner</h3>
+                        <p class="agent-role">Maps · Calendar</p>
+                        <p class="agent-status">Idle</p>
+                    </div>
+                    <div class="agent-indicator"></div>
+                </div>
+
+                <div class="agent-card" id="agent-writer" data-agent="WriterAgent">
+                    <div class="agent-avatar writer-avatar">✍️</div>
+                    <div class="agent-info">
+                        <h3>Writer</h3>
+                        <p class="agent-role">Google Docs</p>
+                        <p class="agent-status">Idle</p>
+                    </div>
+                    <div class="agent-indicator"></div>
+                </div>
+            </div>
+
+            <!-- Live Activity Feed -->
+            <div class="activity-feed">
+                <h3>📡 Live Feed</h3>
+                <div class="feed-list" id="activity-feed">
+                    <div class="feed-item feed-info">
+                        <span class="feed-time">--:--</span>
+                        <span class="feed-text">Waiting for your command...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Powered By -->
+            <div class="powered-by">
+                <span>Powered by</span>
+                <strong>Google ADK + Gemini</strong>
+            </div>
+        </aside>
+
+        <!-- Center Panel — Chat -->
+        <section class="panel chat-panel">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome Message -->
+                <div class="welcome-hero">
+                    <img src="/static/hero_bg.png" alt="" class="hero-image">
+                    <div class="hero-overlay">
+                        <img src="/static/av_logo.png" alt="AV" class="hero-logo">
+                        <h2>Welcome to <span class="gradient-text">AgentVerse</span></h2>
+                        <p>Your AI-powered team of agents that can <strong>research, analyze, plan, and create</strong> across any domain.</p>
+                    </div>
+                </div>
+
+                <div class="examples-grid">
+                    <button class="example-card" onclick="useExample(this)">
+                        <span class="example-icon">🎬</span>
+                        <span class="example-title">Content Research</span>
+                        <span class="example-text">I'm making a YouTube video about AI history. Research the milestones and create an outline doc.</span>
+                    </button>
+                    <button class="example-card" onclick="useExample(this)">
+                        <span class="example-icon">🗺️</span>
+                        <span class="example-title">Travel Planning</span>
+                        <span class="example-text">Plan a 2-day food tour in Jaipur with the best restaurants and add it to my calendar.</span>
+                    </button>
+                    <button class="example-card" onclick="useExample(this)">
+                        <span class="example-icon">📚</span>
+                        <span class="example-title">Research Report</span>
+                        <span class="example-text">Research quantum computing breakthroughs in 2025 and write a summary report.</span>
+                    </button>
+                    <button class="example-card" onclick="useExample(this)">
+                        <span class="example-icon">🎤</span>
+                        <span class="example-title">Speech Writing</span>
+                        <span class="example-text">I need to give a speech about climate change. Research stats and draft a 5-min speech.</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="chat-input-area">
+                <div class="input-wrapper">
+                    <textarea id="chat-input" placeholder="Tell AgentVerse what you need..." rows="1" autofocus></textarea>
+                    <button class="send-btn" id="send-btn" onclick="sendMessage()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Panel — Results -->
+        <aside class="panel results-panel">
+            <div class="panel-header">
+                <h2>📋 Results</h2>
+            </div>
+
+            <div id="results-container">
+                <!-- Tools Used Section -->
+                <div class="result-section" id="tools-section" style="display:none;">
+                    <h3>🛠️ Tools Used</h3>
+                    <div id="tools-list"></div>
+                </div>
+
+                <!-- Created Docs -->
+                <div class="result-section" id="docs-section" style="display:none;">
+                    <h3>📄 Created Documents</h3>
+                    <div id="docs-list"></div>
+                </div>
+
+                <!-- Calendar Events -->
+                <div class="result-section" id="events-section" style="display:none;">
+                    <h3>📅 Scheduled Events</h3>
+                    <div id="events-list"></div>
+                </div>
+
+                <!-- Research Findings -->
+                <div class="result-section" id="research-section" style="display:none;">
+                    <h3>🔗 Sources & Links</h3>
+                    <div id="research-list"></div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="results-empty">
+                    <img src="/static/hero_bg.png" alt="" class="empty-bg">
+                    <div class="empty-content">
+                        <div class="empty-icon">🚀</div>
+                        <p>Agent results will appear here</p>
+                        <p class="empty-sub">Docs · Events · Sources · Tools</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

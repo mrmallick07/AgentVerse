@@ -38,7 +38,7 @@ Your job is to take analyzed information and create well-structured Google Docs.
 
 writer_agent = LlmAgent(
     name="WriterAgent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-pro",
     instruction=WRITER_AGENT_PROMPT,
     description="Specialist in creating polished Google Docs — reports, scripts, outlines, guides, and summaries. Delegate document creation and writing tasks to this agent.",
     tools=[

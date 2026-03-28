@@ -36,7 +36,7 @@ Your job is to create structured plans, itineraries, timelines, and schedule rea
 
 planner_agent = LlmAgent(
     name="PlannerAgent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-pro",
     instruction=PLANNER_AGENT_PROMPT,
     description="Specialist in creating actionable plans, travel itineraries, and scheduling Google Calendar events. Delegate planning, scheduling, location-finding, and itinerary tasks to this agent.",
     tools=[

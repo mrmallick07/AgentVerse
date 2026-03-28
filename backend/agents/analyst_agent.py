@@ -30,7 +30,7 @@ Your job is to take raw research data and transform it into structured, insightf
 
 analyst_agent = LlmAgent(
     name="AnalystAgent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-pro",
     instruction=ANALYST_AGENT_PROMPT,
     description="Specialist in analyzing and synthesizing research data into structured insights. Delegate analysis, comparison, summarization, and fact-checking tasks to this agent.",
     tools=[],

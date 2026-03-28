@@ -75,7 +75,7 @@ You are the MANAGER of a team of 4 specialized AI agents. Your job is to:
 
 orchestrator_agent = LlmAgent(
     name="OrchestratorAgent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-pro",
     instruction=ORCHESTRATOR_PROMPT,
     description="The primary orchestrator agent that coordinates research, analysis, planning, and writing tasks.",
     sub_agents=[

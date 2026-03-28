@@ -26,7 +26,7 @@ Your job is to gather comprehensive data when given a research task. You have ac
 
 research_agent = LlmAgent(
     name="ResearchAgent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-pro",
     instruction=RESEARCH_AGENT_PROMPT,
     description="Specialist in gathering information from Google Search. Delegate research, fact-finding, and information gathering tasks to this agent.",
     tools=[
